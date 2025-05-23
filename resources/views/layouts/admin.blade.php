@@ -24,45 +24,56 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased" 
-    x-data="{
+<body class="font-sans antialiased" x-data="{
     sidebarOpen: false
-    }"
-    :class="{
-        'overflow-y-hidden' : sidebarOpen
-    }">
+}" :class="{
+    'overflow-y-hidden': sidebarOpen
+}">
 
-    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden"
-        style="display: none;"
-       x-show="sidebarOpen"
-       x-on:click="sidebarOpen = false">
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" style="display: none;" x-show="sidebarOpen"
+        x-on:click="sidebarOpen = false">
 
     </div>
 
     @include('layouts.partials.admin.sidebar')
     @include('layouts.partials.admin.navigation')
-    
-{{-- Se agrega el breadcrumb para el diseño de la vista --}}
+
+    {{-- Se agrega el breadcrumb para el diseño de la vista --}}
     {{-- Diseño del breadcrumb --}}
     <div class="p-4 sm:ml-64">
 
         <div class="mt-14">
-            @include('layouts.partials.admin.breadcrumb')
 
+            <div class="flex items-center justify-between">
+                @include('layouts.partials.admin.breadcrumb')
+
+                @isset($action)
+                    <div>
+                        {{ $action }}
+                    </div>
+                @endisset
+            </div>
             <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
-            
-            
 
-            {{ $slot }}
+                {{ $slot }}
 
-        </div>
+            </div>
         </div>
 
-        
+
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @livewireScripts
+
+    @stack('js')
+
+    @if (session('swal'))
+        <script>
+                Swal.fire({!! json_encode(session('swal')) !!});
+        </script>
+    @endif
 </body>
 
 </html>

@@ -1,7 +1,4 @@
-{{-- plantilla del dashboard --}}
-{{-- Se agrega el breadcrumb para el diseño de la vista --}}
-{{-- Diseño del breadcrumb --}}
-
+{{-- View de plantilla de categorias --}}
 
 <x-admin-layout :breadcrumbs="[
     [
@@ -9,18 +6,18 @@
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Familias',
+        'name' => 'Categorias',
     ],
 ]">
 
     <x-slot name="action">
-        <a class="btn btn-blue" href="{{ route('admin.families.create') }}">
+        <a class="btn btn-blue" href="{{ route('admin.categories.create') }}">
             Agregar Categoria
         </a>
 
     </x-slot>
 
-    @if ($families->count())
+    @if ($categories->count())
 
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -31,29 +28,31 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Name
+                            Nombre
                         </th>
                         <th scope="col" class="px-6 py-3">
-
+                            Familia
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            
                         </th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($families as $family)
+                    @foreach ($categories as $category)
                         <tr>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $family->id }}
+                                {{ $category->id }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $family->name }}
+                                {{ $category->name }}
                             </td>
                             <td class="px-6 py-4">
-                                Wearables
-                            </td>
+                                {{ $category->family->name }}
                             <td class="px-6 py-4">
-                                <a href="{{ route('admin.families.edit', $family) }}"
+                                <a href="{{ route('admin.categories.edit', $category) }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Editar
                                 </a>
@@ -66,7 +65,7 @@
         </div>
 
         <div class="mt-4">
-            {{ $families->links() }}
+            {{ $categories->links() }}
         </div>
     @else
         <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
@@ -82,7 +81,5 @@
             </div>
         </div>
     @endif
-
-
 
 </x-admin-layout>
