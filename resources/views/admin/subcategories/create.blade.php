@@ -1,18 +1,18 @@
-{{-- View de crear categorias --}}
 <x-admin-layout :breadcrumbs="[
     [
         'name' => 'Dashboard',
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Categorias',
-        'route' => route('admin.categories.index'),
+        'name' => 'Subcategorias',
+        'route' => route('admin.subcategories.index'),
     ],
     [
-        'name' => 'Nueva Categoria',
+        'name' => 'Nueva Subcategoria',
     ],
 ]">
-    <form action="{{ route('admin.categories.store') }}" method="POST">
+
+    {{-- <form action="{{ route('admin.subcategories.store') }}" method="POST">
         @csrf
         <div class="card">
 
@@ -20,13 +20,12 @@
 
             <div class="mb-4">
                 <x-label class="mb-2">
-                    Seleccione la familia
+                    Seleccione la Categoria
                 </x-label>
-                <x-select name="family_id" id="family_id" class="w-full">
-                    @foreach ($families as $family)
-                        <option value="{{ $family->id }}"
-                            @selected(old('family_id') == $family->id)>
-                            {{ $family->name }}
+                <x-select name="category_id" class="w-full">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                            {{ $category->name }}
                         </option>
                     @endforeach
                 </x-select>
@@ -47,5 +46,8 @@
             </div>
 
         </div>
-    </form>
+    </form> --}}
+
+    @livewire('admin.subcategories.subcategory-create')
+
 </x-admin-layout>
