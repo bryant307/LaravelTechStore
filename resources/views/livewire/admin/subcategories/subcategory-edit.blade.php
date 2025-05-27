@@ -1,4 +1,4 @@
- <div>
+<div>
      <form wire:submit="save">
          <div class="card">
 
@@ -11,7 +11,7 @@
 
 
 
-                 <x-select name="family_id" class="w-full" wire:model.live="subcategory.family_id">
+                 <x-select name="family_id" class="w-full" wire:model="subcategoryEdit.family_id">
 
                      <option value="" disabled>
                          Seleccione una familia
@@ -27,7 +27,7 @@
                  <x-label class="mb-2">
                      Seleccione la Categoria
                  </x-label>
-                 <x-select name="category_id" class="w-full" wire:model.live="subcategory.category_id">
+                 <x-select name="category_id" class="w-full" wire:model="subcategoryEdit.category_id">
                      <option value="" disabled>
                          Sellecione una Subcategoria
                      </option>
@@ -46,18 +46,55 @@
                      Nombre
                  </x-label>
                  <x-input class="w-full" placeholder="Ingrese el nombre de la categoria"
-                     wire:model="subcategory.name" />
+                     wire:model="subcategoryEdit.name" />
 
              </div>
              <div class="flex justify-end">
+
+                 <x-danger-button onclick="confirmDelete()">
+                     Eliminar
+                 </x-danger-button>
                  <x-button class="btn btn-blue">
-                     Guardar
+                     Actualizar
                  </x-button>
              </div>
 
          </div>
      </form>
 
+     <form action="{{ route('admin.subcategories.destroy', $subcategory) }}" method="POST" id="delete-form">
+         @csrf
+         @method('DELETE')
+     </form>
+
+
+     @push('js')
+         <script>
+             function confirmDelete() {
+                 // 
+                 Swal.fire({
+                     title: "Estas seguro?",
+                     text: "Se elimina definitivamente la categoria",
+                     icon: "warning",
+                     showCancelButton: true,
+                     confirmButtonColor: "#3085d6",
+                     cancelButtonColor: "#d33",
+                     confirmButtonText: "Si!",
+                     cancelButtonText: "No"
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         Swal.fire({
+                             title: "Categoria eliminada",
+                             text: "La categoria ha sido eliminada.",
+                             icon: "success"
+                         });
+
+                         document.getElementById('delete-form').submit();
+                     }
+                 });
+             }
+         </script>
+     @endpush
 
 
 

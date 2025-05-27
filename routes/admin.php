@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FamilyController;
@@ -15,3 +16,5 @@ Route::resource('families', FamilyController::class);
 Route::resource('categories', CategoryController::class);
 
 Route::resource('subcategories', SubcategoryController::class);
+
+Route::resource('products', ProductController::class);
