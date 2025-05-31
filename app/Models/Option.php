@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Livewire\Admin\Products\ProductVariants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Feature;
+use App\Models\Product;
 
 class Option extends Model
 {
@@ -21,8 +25,13 @@ class Option extends Model
     }
 
     //Relacion uno a muchos inversa
-    public function feature(){
+    public function features():HasMany{
         return $this->hasMany(Feature::class);
+    }
+
+    public function productVariants()
+    {
+        return $this->hasMany(ProductVariants::class);
     }
     //
 }

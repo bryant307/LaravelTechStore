@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             FamilySeeder::class,
+            OptionSeeder::class,
         ]);
 
         Product::factory(200)->create();

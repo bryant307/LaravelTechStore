@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Livewire\Admin\Products\ProductVariants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
@@ -34,4 +35,8 @@ class Product extends Model
         ->withPivot('value')
         ->withTimestamps();
     }   
+    public function productVariants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }
