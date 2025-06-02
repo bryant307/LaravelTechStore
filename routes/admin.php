@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CoverController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,7 @@ Route::resource('categories', CategoryController::class);
 Route::resource('subcategories', SubcategoryController::class);
 
 Route::resource('products', ProductController::class);
+
+Route::resource('covers', CoverController::class);
+
+Route::post('covers/update-order', [CoverController::class, 'updateOrder'])->name('covers.update-order');

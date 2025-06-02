@@ -12,8 +12,7 @@
                 </label>
             </div>
             <img class="aspect-[16/9] object-cover object-center w-full"
-                src="{{ $image ? $image->temporaryUrl() : asset('img/no-imagen.png') }}" 
-                alt="">
+                src="{{ $image ? $image->temporaryUrl() : asset('img/no-imagen.png') }}" alt="">
         </figure>
 
 
@@ -89,13 +88,14 @@
             <x-label class="mb-1">
                 Precio
             </x-label>
-            <x-input type="number" step="0.01" wire:model='product.price' class="w-full" placeholder="Ingrese el precio del producto" />
+            <x-input type="number" step="0.01" wire:model='product.price' class="w-full"
+                placeholder="Ingrese el precio del producto" />
         </div>
         <div class="flex justify-end mt-4">
             <x-button>
                 Crear Producto
             </x-button>
-            
+
 
         </div>
     </form>
