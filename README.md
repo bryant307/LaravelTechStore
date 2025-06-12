@@ -1,61 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <h1>LaravelTechStore</h1>
+  <p><strong>Tienda en línea de productos tecnológicos</strong></p>
+  <img src="https://ugb.edu.sv/images/menus/logo-header.png" width="400" alt="Logo UGB">
+  <h2>Universidad Gerardo Barrios</h2>
+  <p><strong>Facultad de Ciencia y Tecnología</strong></p>
+  <p><strong>Programación IV</strong></p>
+</div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Presentación
 
-## About Laravel
+Este proyecto es una tienda en línea de productos tecnológicos desarrollada con Laravel, como parte del curso de Programación IV en la Universidad Gerardo Barrios.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Integrantes
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Bryan Enrique Torres Alvarez**
+- **Manuel Heriberto Martinez Aviles**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Descripción
 
-## Learning Laravel
+LaravelTechStore es una plataforma de comercio electrónico especializada en la venta de productos tecnológicos y electrónicos. Desarrollada utilizando Laravel, Livewire y Tailwind CSS, la aplicación ofrece una experiencia de compra intuitiva para los usuarios.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Características principales
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Catálogo organizado**: Productos clasificados en familias, categorías y subcategorías
+- **Sistema de variantes**: Productos con múltiples opciones (color, tamaño, etc.)
+- **Galería de imágenes**: Visualización de múltiples imágenes por variante
+- **Reseñas y valoraciones**: Sistema de comentarios y calificaciones
+- **Compartir en redes sociales**: Integración con múltiples plataformas
+- **Carrito de compras**: Funcionalidad completa
+- **Panel administrativo**: Gestión integral de la tienda
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tecnologías utilizadas
 
-## Laravel Sponsors
+- Laravel 10
+- Livewire
+- Tailwind CSS
+- MySQL
+- Jetstream
+- Stripe (para pagos)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Documentación
 
-### Premium Partners
+- [Integración de pagos con Stripe](docs/payment-integration.md)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+## Instalación y configuración
 
-## Contributing
+Para instalar y configurar el proyecto, sigue estos pasos:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Clona el repositorio:
+   ```
+   git clone https://github.com/usuario/LaravelTechStore.git
+   cd LaravelTechStore
+   ```
 
-## Code of Conduct
+2. Instala las dependencias:
+   ```
+   composer install
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Configura el archivo .env:
+   ```
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+4. Configura la base de datos en el archivo .env y ejecuta las migraciones:
+   ```
+   php artisan migrate --seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Enlaza el almacenamiento:
+   ```
+   php artisan storage:link
+   ```
 
-## License
+6. Compila los assets:
+   ```
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7. Inicia el servidor:
+   ```
+   php artisan serve
+   ```
+
+## Estructura del proyecto
+
+El proyecto está organizado siguiendo las mejores prácticas de Laravel:
+
+## Modelos y relaciones
+
+El sistema cuenta con los siguientes modelos principales:
+
+- **Family**: Familias de productos (ej. Electrónicos, Informática)
+- **Category**: Categorías que pertenecen a una familia
+- **Subcategory**: Subcategorías que pertenecen a una categoría
+- **Product**: Productos base con sus características generales
+- **ProductVariant**: Variantes específicas de cada producto
+- **ProductVariantImage**: Imágenes asociadas a cada variante
+- **Review**: Sistema de reseñas y valoraciones
+- **User**: Usuarios del sistema, incluyendo compradores y administradores
+- **Order**: Pedidos realizados por los usuarios
+- **OrderItem**: Líneas de cada pedido
+
+## Componentes Livewire
+
+El sistema utiliza Livewire para la interactividad en tiempo real:
+
+- **AddToCart**: Gestión de añadir productos al carrito
+- **CartDetail**: Vista detallada del carrito de compras
+- **ProductGallery**: Galería de imágenes de productos
+- **ProductReviews**: Sistema de reseñas y valoraciones
+- **ShippingAddress**: Formulario de dirección de envío
+- **OrderTracking**: Seguimiento de pedidos
+
+## Capturas de pantalla
+
+![Página de inicio](/public/img/screenshots/Home1.png)
+*Vista de la página principal*
+![Pagina de inicio](/public/img/screenshots/Home2.png) 
+
+![Detalle de producto](/public/img/screenshots/Resenas.png)
+*Vista detallada de un producto con variantes y reseñas*
+
+![Carrito de compras](/public/img/screenshots/carrito.png)
+*Vista del carrito de compras*
+
+
+
+## Agradecimientos
+
+Agradecemos a nuestro profesor de Programación IV por su guía y apoyo durante el ciclo.
+
+## Licencia
+
+Este proyecto es presentado como trabajo académico para la Universidad Gerardo Barrios.
+
+---
+
+<p align="center">Universidad Gerardo Barrios © 2025 | Programación IV</p>

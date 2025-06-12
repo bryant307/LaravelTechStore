@@ -1,7 +1,7 @@
 <div x-data="{
     open: false,
-}">
-    <header class="bg-blue-600">
+}" @close-sidebar.window="open = false">
+    <header class="bg-blue-600" wire:key="navigation-header">
         <x-container class="px-4 py-4">
             <div class="flex justify-between items-center space-x-8">
 
@@ -23,7 +23,7 @@
                     </a>
                 </h1>
                 <div class="flex-1 hidden md:block">
-                    <x-input class="w-full" placeholder="Buscar producto">
+                    <x-input wire:input.debounce.300ms="search($event.target.value)" class="w-full" placeholder="Buscar producto">
 
                     </x-input>
                 </div>
@@ -60,6 +60,10 @@
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     Mi perfil
                                 </x-dropdown-link>
+                                
+                                <x-dropdown-link href="{{ route('orders.index') }}">
+                                    <i class="fas fa-box-open mr-2"></i> Mis pedidos
+                                </x-dropdown-link>
 
                                 <div class="border-t border-gray-200">
                                     <!-- Authentication -->
@@ -80,29 +84,27 @@
                         </x-slot>
                     </x-dropdown>
 
-                    <button class="text-xl md:text-3xl">
-                        <i class="fas fa-shopping-cart text-white"></i>
-                    </button>
+                    @livewire('cart-icon')
                 </div>
             </div>
 
             <div class="mt-4 md:hidden">
-                <x-input class="w-full" placeholder="Buscar producto"></x-input>
+                <x-input wire:input.debounce.300ms="search($event.target.value)" class="w-full" placeholder="Buscar producto"></x-input>
 
             </div>
         </x-container>
     </header>
 
-    <div x-show="open" x-on:click="open = false" style ="display: none"
+    <div x-show="open" x-on:click="open = false" style="display: none"
         class="fixed top-0 left-0 inset-0 bg-black bg-opacity-25 z-10">
 
     </div>
 
+    <!-- Esto es para que el sidebar se muestre encima del fondo oscuro -->
     <div x-show="open" style="display: none" class="fixed top-0 left-0 z-20">
-
         <div class="flex">
             <div class="w-screen md:w-80 h-screen bg-white">
-                <div class=" bg-blue-600 px-4 py-3 text-white font-semibold">
+                <div class="bg-blue-600 px-4 py-3 text-white font-semibold">
                     <div class="flex justify-between items-center">
                         <span class="text-lg">
                             Hola, {{ auth()->user()->name ?? ' Bienvenido' }}!
@@ -119,8 +121,8 @@
                     <ul>
                         @foreach ($families as $family)
                             <li wire:mouseover="$set('family_id', {{ $family->id }})">
-                                <a href=""
-                                    class=" flex items-center justify-between px-4 py-4 text-gray-700 hover:bg-blue-200">
+                                <a href="{{ route('families.show', $family) }}"
+                                    class="flex items-center justify-between px-4 py-4 text-gray-700 hover:bg-blue-200">
                                     {{ $family->name }}
                                     <i class="fa-solid fa-angle-right ">
 
@@ -134,26 +136,30 @@
 
             </div>
             <div class="w-80 xl:w-[57rem] pt-[52px] hidden md:block">
-                <div class="bg-white h-[calc(100vh-52px)] ovverflow-auto px-6 py-8">
-                    <div class=" flex #mb-8 justify-between items-center">
+                <div class="bg-white h-[calc(100vh-52px)] overflow-auto px-6 py-8">
+                    <div class="flex mb-8 justify-between items-center">
                         <p class="border-b-[3px] border-lime-400 uppercase text-xl font-semibold">
                             {{ $this->familyName }}
                         </p>
 
-                        <a href="" class="btn btn-blue ">
-                            Ver todos
-                        </a>
+                        @if($family_id)
+                            <a href="{{ route('families.show', $family_id) }}" class="btn btn-blue">
+                                Ver todos
+                            </a>
+                        @endif
 
                     </div>
                     <ul class="grid grid-cols-2 xl:grid-cols-3 gap-8">
                         @foreach ($this->categories as $category)
                             <li>
-                                <a href="" class="text-blue-600 font-semibold text-lg">{{ $category->name }}</a>
+                                <a href="{{ route('categories.show', $category) }}" 
+                                   class="text-blue-600 font-semibold text-lg">{{ $category->name }}</a>
 
                                 <ul class="mt-4 space-y-2">
                                     @foreach ($category->subcategories->sortBy('name') as $subcategory)
                                         <li>
-                                            <a href="" class="text-sm text-gray-700 hover:text-blue-600">
+                                            <a href="{{ route('subcategories.show', $subcategory) }}" 
+                                               class="text-sm text-gray-700 hover:text-blue-600">
                                                 {{ $subcategory->name }}
                                             </a>
                                         </li>
@@ -169,4 +175,13 @@
         </div>
 
     </div>
+
+    @push('js')
+        <script>
+            function search(value) {
+                // Dispatch the search event directly with the value
+                Livewire.dispatch('search', value);
+            }
+        </script>
+    @endpush
 </div>

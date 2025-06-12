@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,21 +18,24 @@ class User extends Authenticatable
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;   
+    use TwoFactorAuthenticatable;
 
     /**
-     * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'document_type',
+        'document_number',
         'email',
+        'phone',
         'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * 
      *
      * @var array<int, string>
      */
@@ -42,7 +47,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * 
      *
      * @var array<int, string>
      */
@@ -51,7 +56,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Obtiene los atributos que deben ser convertidos a tipos específicos.
      *
      * @return array<string, string>
      */
@@ -61,5 +66,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Obtiene las direcciones asociadas al usuario.
+     */
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+    
+    /**
+     * Relación con las reseñas escritas por el usuario
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
+    /**
+     * Verifica si el usuario tiene rol de administrador
+     */
+    public function isAdmin()
+    {
+        // Usa la columna is_admin que fue añadida mediante migración
+        return $this->is_admin === true || $this->is_admin == 1;
     }
 }

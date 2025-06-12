@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cover;
+use App\Models\Product;
+use App\Models\Family;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -16,8 +18,12 @@ class WelcomeController extends Controller
                   ->orWhereNull('end_at');
         })          
         ->get();
+        
+        $lastProducts = Product::latest()->take(12)->get();
 
+        // Agregar familias que tienen productos para facilitar las pruebas
+        $familiesWithProducts = Family::whereHas('categories.subcategories.products')->get();
 
-        return view('welcome', compact('covers'));
+        return view('welcome', compact('covers', 'lastProducts', 'familiesWithProducts'));
     }
 }

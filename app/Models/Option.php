@@ -28,6 +28,18 @@ class Option extends Model
     public function features():HasMany{
         return $this->hasMany(Feature::class);
     }
+    
+    /**
+     * Scope para filtrar opciones por familia
+     */
+    public function scopeByFamily($query, $familyId)
+    {
+        return $query->whereHas('products', function ($query) use ($familyId) {
+            $query->whereHas('subcategory.category', function ($subQuery) use ($familyId) {
+                $subQuery->where('family_id', $familyId);
+            });
+        });
+    }
 
     public function productVariants()
     {

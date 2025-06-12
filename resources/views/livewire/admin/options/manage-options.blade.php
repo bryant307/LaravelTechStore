@@ -37,7 +37,7 @@
                                 @switch($option->type)
                                     @case(1)
                                         <span
-                                            class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-400 border border-gray-500 flex items-center gap-2">
+                                            class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-gray-500 flex items-center gap-2">
                                             {{ $feature->description }}
                                             <button wire:click="removeFeature({{ $option->id }}, {{ $feature->id }})">
                                                 <i class="fas fa-times text-red-500 hover:text-red-700"></i>

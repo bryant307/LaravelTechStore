@@ -12,7 +12,8 @@
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
-        "livewire/livewire": "^3.0"
+        "livewire/livewire": "^3.0",
+        "stripe/stripe-php": "^17.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",

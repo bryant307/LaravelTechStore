@@ -24,8 +24,8 @@
 
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             ID
@@ -43,7 +43,7 @@
                     @foreach ($families as $family)
                         <tr>
                             <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $family->id }}
                             </th>
                             <td class="px-6 py-4">
@@ -54,7 +54,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <a href="{{ route('admin.families.edit', $family) }}"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    class="font-medium text-blue-600 hover:underline">
                                     Editar
                                 </a>
                             </td>
@@ -69,7 +69,7 @@
             {{ $families->links() }}
         </div>
     @else
-        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">

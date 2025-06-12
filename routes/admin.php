@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CoverController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FamilyController;
@@ -25,3 +26,6 @@ Route::resource('products', ProductController::class);
 Route::resource('covers', CoverController::class);
 
 Route::post('covers/update-order', [CoverController::class, 'updateOrder'])->name('covers.update-order');
+
+// Routes for order management
+Route::resource('orders', OrderController::class);
