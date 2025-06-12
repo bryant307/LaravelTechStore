@@ -1,7 +1,7 @@
 <div align="center">
   <h1>LaravelTechStore</h1>
   <p><strong>Tienda en línea de productos tecnológicos</strong></p>
-  <img src="https://ugb.edu.sv/images/menus/logo-header.png" width="400" alt="Logo UGB">
+  <img src="https://ugb.edu.sv/wp-content/uploads/2024/10/UGB_LOGO_AZUL.png" width="400" alt="Logo UGB">
   <h2>Universidad Gerardo Barrios</h2>
   <p><strong>Facultad de Ciencia y Tecnología</strong></p>
   <p><strong>Programación IV</strong></p>
